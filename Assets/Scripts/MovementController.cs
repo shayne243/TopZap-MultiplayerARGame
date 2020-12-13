@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     public Joystick joystick;
-    public float speed = 4f;
+    public float speed = 2f;
     private Vector3 velocityVector = Vector3.zero;
     private Rigidbody rb;
     public float maxVelocityChange = 4f;
@@ -28,6 +28,8 @@ public class MovementController : MonoBehaviour
         Vector3 _movementVelocityVector = (_movementHorizontal + _movementVertical).normalized * 10;
 
         Move(_movementVelocityVector);
+        
+        transform.rotation = Quaternion.Euler(joystick.Vertical * speed * tiltAmount, 0, -1 * joystick.Horizontal * speed * tiltAmount);
     }
 
     void Move(Vector3 movementVelocityVector)
@@ -48,6 +50,5 @@ public class MovementController : MonoBehaviour
 
             rb.AddForce(velocityChange, ForceMode.Acceleration);
         }
-        
     }
 }

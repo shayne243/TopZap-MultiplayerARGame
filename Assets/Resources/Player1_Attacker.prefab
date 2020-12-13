@@ -364,8 +364,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 2929252284609183733}
-  speed: 4
+  speed: 2
   maxVelocityChange: 4
+  tiltAmount: 10
 --- !u!1 &2523371896480695252
 GameObject:
   m_ObjectHideFlags: 0
