@@ -70,6 +70,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public void OnQuickMatchButtonClicked()
+    {
+        SceneLoader.Instance.LoadScene("Scene_PlayerSelection");
+    }
+
     #endregion
 
     #region PHOTON Callback Methods
