@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 923217588}
   - component: {fileID: 1842688984}
   - component: {fileID: 4477616124297495515}
+  - component: {fileID: 8229433606044206263}
   m_Layer: 0
   m_Name: Player1_Attacker
   m_TagString: Player
@@ -406,6 +407,19 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &8229433606044206263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2523371896380985836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a8a718c249127643ac7f3c95eb47695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNameText: {fileID: 2523371896480695254}
 --- !u!1 &2523371896480695252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,13 +1167,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a21e79c256cb774aa7b7aad3fe982af, type: 3}
---- !u!4 &7954243406276922915 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 269093183157644556, guid: 7a21e79c256cb774aa7b7aad3fe982af, type: 3}
-  m_PrefabInstance: {fileID: 7917087279287771951}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &423723676981237891 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7511576053577792428, guid: 7a21e79c256cb774aa7b7aad3fe982af, type: 3}
+  m_PrefabInstance: {fileID: 7917087279287771951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7954243406276922915 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 269093183157644556, guid: 7a21e79c256cb774aa7b7aad3fe982af, type: 3}
   m_PrefabInstance: {fileID: 7917087279287771951}
   m_PrefabAsset: {fileID: 0}
