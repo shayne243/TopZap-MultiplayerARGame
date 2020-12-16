@@ -326,11 +326,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781d87d36102bde4dabbccbc8278d779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uI_InformPanelGameobject: {fileID: 0}
-  uI_InformText: {fileID: 0}
-  searchForGamesButtonGameobject: {fileID: 0}
-  adjust_Button: {fileID: 0}
-  raycastCenter_Image: {fileID: 0}
+  uI_InformPanelGameobject: {fileID: 212251898}
+  uI_InformText: {fileID: 243443568}
+  searchForGamesButtonGameobject: {fileID: 623289035}
 --- !u!1 &212251898
 GameObject:
   m_ObjectHideFlags: 0
