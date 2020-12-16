@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 1842688984}
   - component: {fileID: 4477616124297495515}
   - component: {fileID: 8229433606044206263}
+  - component: {fileID: 2862474430897880349}
   m_Layer: 0
   m_Name: Player1_Attacker
   m_TagString: Player
@@ -400,10 +401,11 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  observableSearch: 2
+  observableSearch: 0
   Synchronization: 3
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 2862474430897880349}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -420,6 +422,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNameText: {fileID: 2523371896480695254}
+--- !u!114 &2862474430897880349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2523371896380985836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfc19af373f5d5489f7c44e3625e157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  synchronizeVelocity: 1
+  synchronizeAngularVelocity: 1
+  isTeleportEnabled: 1
+  teleportIfDistanceGreaterThan: 1
 --- !u!1 &2523371896480695252
 GameObject:
   m_ObjectHideFlags: 0
