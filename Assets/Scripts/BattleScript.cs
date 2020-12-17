@@ -13,7 +13,6 @@ public class BattleScript : MonoBehaviourPun
     public GameObject deathPanelUIPrefab;
     private GameObject deathPanelUIGameobject;
 
-
     private Rigidbody rb;
 
     private float startSpinSpeed;
@@ -21,13 +20,11 @@ public class BattleScript : MonoBehaviourPun
     public Image spinSpeedBar_Image;
     public TextMeshProUGUI spinSpeedRatio_Text;
 
-
     public float common_Damage_Coefficient = 0.04f;
 
     public bool isAttacker;
     public bool isDefender;
     private bool isDead = false;
-
 
     [Header("Player Type Damage Coefficients")]
     public float doDamage_Coefficient_Attacker = 10f;
@@ -36,14 +33,11 @@ public class BattleScript : MonoBehaviourPun
     public float doDamage_Coefficient_Defender = 0.75f;
     public float getDamaged_Coefficient_Defender = 0.2f;
 
-
     private void Awake()
     {
         startSpinSpeed = spinnerScript.spinSpeed;
         currentSpinSpeed = spinnerScript.spinSpeed;
-
         spinSpeedBar_Image.fillAmount = currentSpinSpeed / startSpinSpeed;
-
     }
 
     private void CheckPlayerType()
@@ -52,21 +46,15 @@ public class BattleScript : MonoBehaviourPun
         {
             isAttacker = true;
             isDefender = false;
-
-
         }
         else if (gameObject.name.Contains("Defender"))
         {
             isDefender = true;
             isAttacker = false;
-
             spinnerScript.spinSpeed = 4400;
-
             startSpinSpeed = spinnerScript.spinSpeed;
             currentSpinSpeed = spinnerScript.spinSpeed;
-
             spinSpeedRatio_Text.text = currentSpinSpeed + "/" + startSpinSpeed;
-
         }
     }
 
@@ -90,9 +78,7 @@ public class BattleScript : MonoBehaviourPun
             }
             float mySpeed = gameObject.GetComponent<Rigidbody>().velocity.magnitude;
             float otherPlayerSpeed = collision.collider.gameObject.GetComponent<Rigidbody>().velocity.magnitude;
-
             Debug.Log("My speed: " + mySpeed + " -----Other player speed: " + otherPlayerSpeed);
-
             if (mySpeed > otherPlayerSpeed)
             {
                 Debug.Log(" You DAMAGE the other player.");
@@ -101,7 +87,6 @@ public class BattleScript : MonoBehaviourPun
                 if (isAttacker)
                 {
                     default_Damage_Amount *= doDamage_Coefficient_Attacker;
-
                 }
                 else if (isDefender)
                 {
@@ -138,7 +123,6 @@ public class BattleScript : MonoBehaviourPun
             currentSpinSpeed = spinnerScript.spinSpeed;
             spinSpeedBar_Image.fillAmount = currentSpinSpeed / startSpinSpeed;
             spinSpeedRatio_Text.text = currentSpinSpeed.ToString("F0") + "/" + startSpinSpeed;
-
             if (currentSpinSpeed < 100)
             {
                 Die();
@@ -149,14 +133,11 @@ public class BattleScript : MonoBehaviourPun
     void Die()
     {
         isDead = true;
-
         GetComponent<MovementController>().enabled = false;
         rb.freezeRotation = false;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-
         spinnerScript.spinSpeed = 0f;
-
         uI_3D_Gameobject.SetActive(false);
         if (photonView.IsMine)
         {
@@ -170,7 +151,6 @@ public class BattleScript : MonoBehaviourPun
         if (deathPanelUIGameobject == null)
         {
             deathPanelUIGameobject = Instantiate(deathPanelUIPrefab, canvasGameobject.transform);
-
         }
         else
         {
