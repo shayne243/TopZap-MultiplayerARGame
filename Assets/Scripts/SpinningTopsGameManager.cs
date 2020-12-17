@@ -32,7 +32,17 @@ public class SpinningTopsGameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomRoom();
         searchForGamesButtonGameobject.SetActive(false);
     }
-
+    public void OnQuitMatchButtonClicked()
+    {
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+        else
+        {
+            SceneLoader.Instance.LoadScene("Scene_Lobby");
+        }
+    }
     #endregion
 
 
@@ -57,6 +67,11 @@ public class SpinningTopsGameManager : MonoBehaviourPunCallbacks
             StartCoroutine(DeactivateAfterSeconds(uI_InformPanelGameobject, 2.0f));
         }
         Debug.Log(" joined to " + PhotonNetwork.CurrentRoom.Name);
+    }
+
+    public override void OnLeftRoom()
+    {
+        SceneLoader.Instance.LoadScene("Scene_Lobby");
     }
 
 
