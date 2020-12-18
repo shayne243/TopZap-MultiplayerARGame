@@ -7715,6 +7715,7 @@ MonoBehaviour:
   - {fileID: 931434789}
   - {fileID: 2043065518}
   - {fileID: 1650174349}
+  battleArenaGameobject: {fileID: 760013867502548235}
 --- !u!4 &1825869503
 Transform:
   m_ObjectHideFlags: 0

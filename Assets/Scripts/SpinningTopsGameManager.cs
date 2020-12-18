@@ -11,6 +11,8 @@ public class SpinningTopsGameManager : MonoBehaviourPunCallbacks
     public GameObject uI_InformPanelGameobject;
     public TextMeshProUGUI uI_InformText;
     public GameObject searchForGamesButtonGameobject;
+    public GameObject adjust_Button;
+    public GameObject raycastCenter_Image;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,8 @@ public class SpinningTopsGameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomRoom();
         searchForGamesButtonGameobject.SetActive(false);
     }
+
+
     public void OnQuitMatchButtonClicked()
     {
         if (PhotonNetwork.InRoom)
@@ -41,9 +45,9 @@ public class SpinningTopsGameManager : MonoBehaviourPunCallbacks
         {
             SceneLoader.Instance.LoadScene("Scene_Lobby");
         }
+
     }
     #endregion
-
 
     #region PHOTON Callback Methods
     public override void OnJoinRandomFailed(short returnCode, string message)
@@ -53,9 +57,10 @@ public class SpinningTopsGameManager : MonoBehaviourPunCallbacks
         CreateAndJoinRoom();
     }
 
-
     public override void OnJoinedRoom()
     {
+        adjust_Button.SetActive(false);
+        raycastCenter_Image.SetActive(false);
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
             uI_InformText.text = "Joined to " + PhotonNetwork.CurrentRoom.Name + ". Waiting for other players...";
@@ -67,13 +72,6 @@ public class SpinningTopsGameManager : MonoBehaviourPunCallbacks
         }
         Debug.Log(" joined to " + PhotonNetwork.CurrentRoom.Name);
     }
-
-    public override void OnLeftRoom()
-    {
-        SceneLoader.Instance.LoadScene("Scene_Lobby");
-    }
-
-
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log(newPlayer.NickName + " joined to " + PhotonNetwork.CurrentRoom.Name + " Player count " + PhotonNetwork.CurrentRoom.PlayerCount);
@@ -81,8 +79,10 @@ public class SpinningTopsGameManager : MonoBehaviourPunCallbacks
 
         StartCoroutine(DeactivateAfterSeconds(uI_InformPanelGameobject, 2.0f));
     }
-
-
+    public override void OnLeftRoom()
+    {
+        SceneLoader.Instance.LoadScene("Scene_Lobby");
+    }
     #endregion
 
 
@@ -90,13 +90,10 @@ public class SpinningTopsGameManager : MonoBehaviourPunCallbacks
     void CreateAndJoinRoom()
     {
         string randomRoomName = "Room" + Random.Range(0, 1000);
-
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 2;
-
         PhotonNetwork.CreateRoom(randomRoomName, roomOptions);
     }
-
 
     IEnumerator DeactivateAfterSeconds(GameObject _gameObject, float _seconds)
     {
@@ -106,4 +103,3 @@ public class SpinningTopsGameManager : MonoBehaviourPunCallbacks
     }
     #endregion
 }
-

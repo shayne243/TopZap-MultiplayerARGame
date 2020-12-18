@@ -21,7 +21,6 @@ public class MySynchronizationScript : MonoBehaviour, IPunObservable
 
     private GameObject battleArenaGameobject;
 
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,6 +32,18 @@ public class MySynchronizationScript : MonoBehaviour, IPunObservable
         battleArenaGameobject = GameObject.Find("BattleArena");
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
     private void FixedUpdate()
     {
         if (!photonView.IsMine)
@@ -40,6 +51,7 @@ public class MySynchronizationScript : MonoBehaviour, IPunObservable
             rb.position = Vector3.MoveTowards(rb.position, networkedPosition, distance * (1.0f / PhotonNetwork.SerializationRate));
             rb.rotation = Quaternion.RotateTowards(rb.rotation, networkedRotation, angle * (1.0f / PhotonNetwork.SerializationRate));
         }
+
     }
 
 
@@ -49,6 +61,7 @@ public class MySynchronizationScript : MonoBehaviour, IPunObservable
         {
             stream.SendNext(rb.position - battleArenaGameobject.transform.position);
             stream.SendNext(rb.rotation);
+
             if (synchronizeVelocity)
             {
                 stream.SendNext(rb.velocity);
@@ -62,6 +75,7 @@ public class MySynchronizationScript : MonoBehaviour, IPunObservable
         {
             networkedPosition = (Vector3)stream.ReceiveNext() + battleArenaGameobject.transform.position;
             networkedRotation = (Quaternion)stream.ReceiveNext();
+
             if (isTeleportEnabled)
             {
                 if (Vector3.Distance(rb.position, networkedPosition) > teleportIfDistanceGreaterThan)
@@ -69,7 +83,6 @@ public class MySynchronizationScript : MonoBehaviour, IPunObservable
                     rb.position = networkedPosition;
                 }
             }
-
             if (synchronizeVelocity || synchronizeAngularVelocity)
             {
                 float lag = Mathf.Abs((float)(PhotonNetwork.Time - info.SentServerTime));
@@ -79,6 +92,7 @@ public class MySynchronizationScript : MonoBehaviour, IPunObservable
                     networkedPosition += rb.velocity * lag;
                     distance = Vector3.Distance(rb.position, networkedPosition);
                 }
+
                 if (synchronizeAngularVelocity)
                 {
                     rb.angularVelocity = (Vector3)stream.ReceiveNext();
